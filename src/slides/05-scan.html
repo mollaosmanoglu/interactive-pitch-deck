@@ -1,0 +1,74 @@
+<!-- 5. Product — Scan — left text + right terminal UI -->
+<article class="slide slide-scan" data-note="Show the product. Luphra scans your agent, finds the vulnerabilities, and maps the risk.">
+  <header class="topline">
+    <img src="assets/luphra-black.svg" alt="Luphra" class="topline-logo" />
+  </header>
+  <div class="content split scan-layout">
+    <div class="scan-copy">
+      <h2>Luphra finds the risk before it finds you.</h2>
+    </div>
+    <div class="channel-stack">
+      <!-- Terminal replaces mail frame, same positioning class -->
+      <div class="mail-frame" style="background:rgba(20,20,22,0.96);border-color:rgba(255,255,255,0.08);color:#e0e0e0;">
+        <div class="mail-titlebar" style="background:#1a1a1a;border-color:rgba(255,255,255,0.06);">
+          <span class="mail-dot red"></span>
+          <span class="mail-dot yellow"></span>
+          <span class="mail-dot green"></span>
+          <span style="font-size:10px;color:rgba(255,255,255,0.25);font-family:monospace;margin:0 auto;">Preview</span>
+        </div>
+        <div style="padding:24px 28px 28px;font-family:monospace;font-size:13px;line-height:2.2;">
+          <p style="margin:0;color:rgba(255,255,255,0.38);">$ luphra run --agent cx-bot-v3</p>
+          <p style="margin:0;color:rgba(255,255,255,0.38);">&gt; Initializing Luphra...</p>
+          <p style="margin:0;color:rgba(255,255,255,0.38);">&gt; Scanning agent endpoints...</p>
+          <p style="margin:0;color:rgba(255,255,255,0.7);">→ Prompt injection <span style="color:#fbbf24;">MEDIUM</span></p>
+          <p style="margin:0;color:rgba(255,255,255,0.7);">→ Data exposure <span style="color:#f87171;">HIGH</span></p>
+          <p style="margin:0;color:rgba(255,255,255,0.7);">→ Auth &amp; permissions <span style="color:#34d399;">LOW</span></p>
+          <p style="margin:0;color:rgba(255,255,255,0.7);">→ Tool integration <span style="color:#fbbf24;">MEDIUM</span></p>
+          <p style="margin:0;color:#a78bfa;">&gt; Scan complete. 4 findings.</p>
+        </div>
+      </div>
+      <!-- Risk score overlay reuses .recon-card -->
+      <div class="recon-card" style="left:auto;right:20%;bottom:10%;width:360px;padding:24px;background:#fff;border-color:rgba(0,0,0,0.08);">
+        <div class="recon-header">
+          <div class="recon-header-left">
+            <div class="recon-logo" style="background:var(--solar);color:var(--foreground);">L</div>
+            <span class="recon-name" style="color:var(--foreground);">Risk Score</span>
+          </div>
+          <div class="recon-badge" style="background:rgba(52,211,153,0.12);">
+            <svg viewBox="0 0 16 16" fill="none" style="color:#059669;"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span style="color:#059669;">Scanned</span>
+          </div>
+        </div>
+        <div class="recon-row" style="border-color:rgba(0,0,0,0.06);">
+          <span class="recon-row-label" style="color:var(--mid-gray);">Score</span>
+          <div class="recon-row-value">
+            <span style="font-size:32px;font-weight:700;color:#d97706;">73</span>
+          </div>
+        </div>
+        <div class="recon-row" style="border-color:rgba(0,0,0,0.06);">
+          <span class="recon-row-label" style="color:var(--foreground);">Prompt injection</span>
+          <span style="color:#d97706;font-weight:600;font-size:12px;">MEDIUM</span>
+        </div>
+        <div class="recon-row" style="border-color:rgba(0,0,0,0.06);">
+          <span class="recon-row-label" style="color:var(--foreground);">Data exposure</span>
+          <span style="color:#dc2626;font-weight:600;font-size:12px;">HIGH</span>
+        </div>
+        <div class="recon-row" style="border-color:rgba(0,0,0,0.06);">
+          <span class="recon-row-label" style="color:var(--foreground);">Auth &amp; permissions</span>
+          <span style="color:#059669;font-weight:600;font-size:12px;">LOW</span>
+        </div>
+        <div style="margin-top:14px;">
+          <div style="height:6px;background:rgba(0,0,0,0.06);border-radius:999px;overflow:hidden;">
+            <div style="width:73%;height:100%;background:#d97706;border-radius:999px;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10px;font-family:monospace;color:var(--mid-gray);">
+            <span>2 critical</span>
+            <span>2 medium</span>
+            <span>0 low</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer"><span>05 / 11</span></footer>
+</article>
