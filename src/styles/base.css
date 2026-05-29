@@ -1877,6 +1877,14 @@ h2 {
   font-weight: 300;
   color: var(--mid-gray);
 }
+.team-person-logos {
+  width: 110%;
+  max-width: 240px;
+  height: auto;
+  display: block;
+  margin-top: 16px;
+  object-fit: contain;
+}
 .team-person-bio {
   font-size: 13px;
   color: var(--foreground);
@@ -2102,6 +2110,56 @@ h2 {
   gap: 0;
 }
 .p10-stat { font-size: 72px; }
+
+/* Balanced two-item variant (hero card + single stat) */
+.p10-layout--duo {
+  justify-content: center;
+  height: 100%;
+}
+.p10-layout--duo .p10-top {
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: 80px;
+}
+.p10-layout--duo .p10-hero-card {
+  min-height: 320px;
+  padding: 40px 48px 44px;
+}
+.p10-layout--duo .p10-card-number {
+  font-size: 96px;
+}
+.p10-layout--duo .p10-right {
+  align-items: flex-start;
+  gap: 12px;
+}
+.p10-layout--duo .p10-right .stat-label {
+  font-size: var(--text-body-m);
+}
+.p10-layout--duo .p10-right .stat-number {
+  font-size: 112px;
+  line-height: 1;
+}
+
+/* ── Europe market slide ── */
+.slide-europe {
+  background: var(--background) !important;
+  grid-template-rows: 1fr auto;
+  padding: 24px 44px;
+}
+.europe-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+.europe-map {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
 
 /* ── Slide 11: CTA ── */
 .slide-cta { display: flex; flex-direction: column; padding: 80px; position: absolute; inset: 0; gap: 40px; }
