@@ -92,13 +92,13 @@ button {
   height: 100vh;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 0;
   position: relative;
-  background:
-    linear-gradient(var(--base-300) 1px, transparent 1px),
-    linear-gradient(90deg, var(--base-300) 1px, transparent 1px),
-    #ffffff;
-  background-size: 64px 64px;
+  background: var(--background);
+}
+
+.deck.deck-dark {
+  background: var(--charcoal);
 }
 
 .stage-wrapper {
@@ -110,8 +110,8 @@ button {
   width: 1440px;
   height: 810px;
   background: var(--background);
-  border: 1px solid var(--grid-line);
-  box-shadow: var(--shadow);
+  border: 0;
+  box-shadow: none;
   position: relative;
   overflow: hidden;
   transform-origin: top left;
@@ -304,6 +304,64 @@ h2 {
   font-weight: var(--text-display-weight);
   letter-spacing: var(--text-display-tracking);
   line-height: var(--text-display-line-height);
+}
+.slide-gap {
+  overflow: hidden;
+}
+.slide-gap .topline,
+.slide-gap .footer {
+  position: relative;
+  z-index: 3;
+}
+.slide-gap .gap-copy {
+  position: relative;
+  z-index: 2;
+  align-self: start;
+  padding-top: 24px;
+}
+.slide-gap .gap-burn-stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 58%;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(100%);
+  will-change: transform;
+}
+.active.slide-gap .gap-burn-stage {
+  animation: gapBurnRise 1.35s 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.slide-gap .gap-burn-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center bottom;
+  will-change: object-position;
+}
+.active.slide-gap .gap-burn-img {
+  animation: gapBurnPan 1.35s 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes gapBurnRise {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes gapBurnPan {
+  from {
+    object-position: center bottom;
+  }
+  to {
+    object-position: center top;
+  }
 }
 .slide-gap .big-word {
   max-width: 1180px;
@@ -1795,7 +1853,7 @@ h2 {
 }
 .team-layout {
   display: grid;
-  grid-template-columns: 1fr 220px;
+  grid-template-columns: 1fr 280px;
   height: 100%;
 }
 .team-main {
@@ -1900,10 +1958,245 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+.team-strip-title {
+  font-family: 'Tiempos Headline', Georgia, serif;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 28px 16px 16px;
+  flex: 0 0 auto;
+}
+.team-advisory-board {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transform: scale(0.95);
+  transform-origin: center center;
+}
+
+/* ── Letters of intent slide ── */
+.slide-loi {
+  grid-template-rows: auto 1fr auto;
+  padding: 44px;
+  gap: 20px;
+}
+.loi-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  min-height: 0;
+}
+.loi-headline {
+  padding-top: 0;
+  font-size: 56px;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.loi-img {
+  width: 100%;
+  max-width: 1180px;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Roadmap slide ── */
+.slide-roadmap {
+  grid-template-rows: auto 1fr auto;
+  padding: 44px 72px;
+  gap: 20px;
+}
+.roadmap-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 64px;
-  padding: 80px 28px;
+  min-height: 0;
 }
+.roadmap-headline {
+  padding-top: 0;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.roadmap-track {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: start;
+  width: 100%;
+  max-width: 1180px;
+  column-gap: 28px;
+}
+.roadmap-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.roadmap-step {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--solar);
+  margin-bottom: 6px;
+}
+.roadmap-quarter {
+  font-family: 'Tiempos Headline', Georgia, serif;
+  font-size: 72px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin: 0;
+  color: var(--foreground);
+}
+.roadmap-year {
+  color: var(--solar);
+}
+.roadmap-underline {
+  display: block;
+  width: 64px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--solar);
+  margin: 14px 0 26px;
+}
+.roadmap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 280px;
+}
+.roadmap-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--foreground);
+}
+.roadmap-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--solar);
+}
+.roadmap-connector {
+  position: relative;
+  align-self: start;
+  margin-top: 64px;
+  width: 100%;
+  min-width: 60px;
+  height: 1.5px;
+  background: rgba(167, 139, 250, 0.45);
+}
+.roadmap-connector::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--solar);
+}
+
+/* ── Competition slide ── */
+.slide-competition {
+  grid-template-rows: auto 1fr auto;
+  padding: 44px;
+  gap: 20px;
+}
+.comp-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  min-height: 0;
+}
+.comp-scatter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(920px, 92%);
+  min-height: 420px;
+  flex-shrink: 0;
+}
+.comp-thumb {
+  position: absolute;
+  width: 42px;
+  height: auto;
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Top row — above the card */
+.comp-thumb:nth-child(1)  { top: 24px;  left: 8%;   transform: rotate(-22deg); width: 36px; }
+.comp-thumb:nth-child(2)  { top: 18px;  left: 22%;  transform: rotate(15deg);  width: 48px; }
+.comp-thumb:nth-child(3)  { top: 32px;  left: 36%;  transform: rotate(-10deg); width: 40px; }
+.comp-thumb:nth-child(4)  { top: 14px;  left: 62%;  transform: rotate(18deg);  width: 44px; }
+.comp-thumb:nth-child(5)  { top: 28px;  left: 76%;  transform: rotate(-14deg); width: 38px; }
+/* Bottom row — below the card */
+.comp-thumb:nth-child(6)  { top: 340px; left: 6%;   transform: rotate(20deg);  width: 46px; }
+.comp-thumb:nth-child(7)  { top: 352px; left: 20%;  transform: rotate(-18deg); width: 40px; }
+.comp-thumb:nth-child(8)  { top: 338px; left: 38%;  transform: rotate(12deg);  width: 50px; }
+.comp-thumb:nth-child(9)  { top: 346px; left: 58%;  transform: rotate(-8deg);  width: 42px; }
+.comp-thumb:nth-child(10) { top: 334px; left: 74%;  transform: rotate(24deg);  width: 38px; }
+.comp-thumb:nth-child(11) { top: 350px; left: 88%;  transform: rotate(-16deg); width: 44px; }
+/* Left side */
+.comp-thumb:nth-child(12) { top: 140px; left: -4%;  transform: rotate(-26deg); width: 36px; }
+.comp-thumb:nth-child(13) { top: 200px; left: 2%;   transform: rotate(14deg);  width: 48px; }
+/* Right side */
+.comp-thumb:nth-child(14) { top: 130px; left: 94%;  transform: rotate(22deg);  width: 40px; }
+.comp-thumb:nth-child(15) { top: 210px; left: 88%;  transform: rotate(-12deg); width: 46px; }
+.comp-card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 88px;
+  border: 1px solid var(--hairline, rgba(0, 0, 0, 0.12));
+  border-radius: 20px;
+  background: var(--card, #fff);
+}
+.comp-headline {
+  padding-top: 0;
+  font-size: 56px;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.comp-img {
+  width: 420px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .strip-logo {
   width: 100%;
   height: 64px;
@@ -2160,6 +2453,274 @@ h2 {
   height: auto;
   object-fit: contain;
 }
+
+/* ── Business model slide ── */
+.slide-business-model {
+  background: var(--background) !important;
+  grid-template-rows: auto 1fr auto;
+  padding: 44px;
+}
+.business-model-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+.business-model-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ── Flow slide: Assess → Monitor → Cover ── */
+.slide-flow {
+  background: var(--background) !important;
+  grid-template-rows: auto 1fr;
+  gap: 14px;
+  padding: 36px 44px 0;
+}
+.slide-flow .footer {
+  position: absolute;
+  left: 44px;
+  bottom: 16px;
+  z-index: 6;
+}
+.slide-flow .footer span { color: rgba(255,255,255,0.55); }
+.flow-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 12px;
+  min-height: 0;
+}
+.flow-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+}
+.flow-big {
+  font-family: 'Tiempos Headline', Georgia, serif;
+  font-size: 34px;
+  font-weight: var(--text-display-weight);
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  margin: 30px 0 156px;
+  color: var(--foreground);
+}
+.flow-window {
+  flex: 1;
+  min-height: 0;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.flow-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  flex-shrink: 0;
+}
+.flow-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+.flow-window-title { margin: 0 auto; font-family: monospace; font-size: 11px; }
+.flow-arrow { align-self: flex-start; color: var(--solar); flex-shrink: 0; display: flex; margin-top: 250px; }
+
+/* Terminal window */
+.flow-terminal { background: #11151c; border-color: rgba(255,255,255,0.08); }
+.flow-terminal .flow-window-bar { background: #0c0f14; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.flow-terminal-body {
+  padding: 18px 20px;
+  font-family: monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #cdd6e3;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.flow-terminal-body p { margin: 0; }
+.flow-pill-line { margin-top: 6px !important; }
+.flow-term-pill {
+  background: rgba(167,139,250,0.18);
+  color: #d6cbff;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+/* Code editor window */
+.flow-editor { background: #ffffff; border-color: rgba(0,0,0,0.08); }
+.flow-editor .flow-window-bar { background: #f3f3f3; border-bottom: 1px solid rgba(0,0,0,0.07); }
+.flow-code {
+  padding: 14px 14px;
+  font-family: monospace;
+  font-size: 10.5px;
+  line-height: 1.72;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  color: #1f2328;
+  white-space: nowrap;
+}
+.flow-line { white-space: pre; }
+.flow-code .ln { color: rgba(0,0,0,0.28); display: inline-block; width: 22px; }
+.flow-code .kw { color: #AF00DB; }
+.flow-code .blu { color: #0000FF; }
+.flow-code .fn { color: #267F99; }
+.flow-code .str { color: #A31515; }
+.flow-code .prop { color: #001080; }
+.flow-block {
+  position: relative;
+  background: rgba(167,139,250,0.12);
+  border: 1px solid rgba(167,139,250,0.45);
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin: 4px 0;
+}
+.flow-tag {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1px solid rgba(167,139,250,0.6);
+  color: #7c5cdb;
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Dashboard window */
+.flow-dash { background: #1e1e1e; border-color: rgba(255,255,255,0.1); }
+.flow-dash-body {
+  padding: 18px 20px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: Inter, sans-serif;
+}
+.flow-dash-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+}
+.flow-tier-pill {
+  padding: 3px 12px;
+  background: rgba(167,139,250,0.22);
+  color: #d6cbff;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.flow-dash-main {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+.flow-gauge { position: relative; width: 92px; height: 92px; flex-shrink: 0; }
+.flow-gauge-num {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 26px; font-weight: 800; color: #f4f4f4;
+}
+.flow-premium {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.flow-premium-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  padding-top: 10px;
+}
+
+/* ── Flow slide staggered animations (replay on activate) ── */
+@keyframes flowDropIn {
+  from { opacity: 0; transform: translateY(-44px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes flowPop {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes flowFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes flowFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes flowGaugeArc {
+  from { stroke-dashoffset: 289.03; }
+  to { stroke-dashoffset: 63.6; }
+}
+@keyframes flowRise {
+  from { opacity: 0; transform: translateY(115%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Big titles fade in alongside each step */
+.slide-flow.active .flow-big--1 { animation: flowFadeUp 0.5s 0.10s both; }
+.slide-flow.active .flow-big--2 { animation: flowFadeUp 0.5s 1.55s both; }
+.slide-flow.active .flow-big--3 { animation: flowFadeUp 0.5s 2.90s both; }
+
+/* Step 1: terminal rises from the bottom, then prints line by line */
+.slide-flow.active .flow-win-1 { animation: flowRise 0.6s 0.20s both; }
+.slide-flow.active .flow-terminal-body p { opacity: 0; animation: flowFadeUp 0.25s both; }
+.slide-flow.active .flow-terminal-body p:nth-child(1) { animation-delay: 0.80s; }
+.slide-flow.active .flow-terminal-body p:nth-child(2) { animation-delay: 0.90s; }
+.slide-flow.active .flow-terminal-body p:nth-child(3) { animation-delay: 1.00s; }
+.slide-flow.active .flow-terminal-body p:nth-child(4) { animation-delay: 1.10s; }
+.slide-flow.active .flow-terminal-body p:nth-child(5) { animation-delay: 1.20s; }
+.slide-flow.active .flow-terminal-body p:nth-child(6) { animation-delay: 1.30s; }
+.slide-flow.active .flow-terminal-body p:nth-child(7) { animation-delay: 1.40s; }
+.slide-flow.active .flow-terminal-body p:nth-child(8) { animation-delay: 1.50s; }
+
+/* Step 2: editor rises, then code fills line by line */
+.slide-flow.active .flow-win-2 { animation: flowRise 0.6s 1.65s both; }
+.slide-flow.active .flow-code > * { opacity: 0; animation: flowFadeUp 0.3s both; }
+.slide-flow.active .flow-code > *:nth-child(1) { animation-delay: 2.05s; }
+.slide-flow.active .flow-code > *:nth-child(2) { animation-delay: 2.11s; }
+.slide-flow.active .flow-code > *:nth-child(3) { animation-delay: 2.17s; }
+.slide-flow.active .flow-code > *:nth-child(4) { animation-delay: 2.23s; }
+.slide-flow.active .flow-code > *:nth-child(5) { animation-delay: 2.29s; }
+.slide-flow.active .flow-code > *:nth-child(6) { animation-delay: 2.35s; }
+.slide-flow.active .flow-code > *:nth-child(7) { animation-delay: 2.41s; }
+.slide-flow.active .flow-code > *:nth-child(8) { animation-delay: 2.47s; }
+.slide-flow.active .flow-code > *:nth-child(9) { animation-delay: 2.53s; }
+.slide-flow.active .flow-code > *:nth-child(10) { animation-delay: 2.59s; }
+.slide-flow.active .flow-code > *:nth-child(11) { animation-delay: 2.65s; }
+
+/* Step 3: dashboard rises, gauge sweeps */
+.slide-flow.active .flow-win-3 { animation: flowRise 0.6s 3.00s both; }
+.slide-flow.active .flow-gauge-arc { animation: flowGaugeArc 0.9s 3.45s both; }
+
+/* Arrows fade in between steps */
+.slide-flow.active .flow-arrow-1 { animation: flowFadeIn 0.4s 1.40s both; }
+.slide-flow.active .flow-arrow-2 { animation: flowFadeIn 0.4s 2.75s both; }
 
 /* ── Slide 11: CTA ── */
 .slide-cta { display: flex; flex-direction: column; padding: 80px; position: absolute; inset: 0; gap: 40px; }

@@ -1,0 +1,124 @@
+<!-- 10. Flow — Assess → Monitor → Cover -->
+<article class="slide slide-flow" data-note="The full loop. A terminal scan assesses the agent, a two-line wrap turns on constant monitoring, and the dashboard issues your premium with maximum coverage.">
+  <header class="topline">
+    <img src="assets/luphra-black.svg" alt="Luphra" class="topline-logo" />
+  </header>
+
+  <div class="flow-row">
+
+    <!-- STEP 1 — Terminal assessment -->
+    <figure class="flow-col">
+      <h3 class="flow-big flow-big--1">Assess</h3>
+      <div class="flow-window flow-terminal flow-win-1">
+        <div class="flow-window-bar">
+          <span class="flow-dot" style="background:#FF5F57;"></span>
+          <span class="flow-dot" style="background:#FEBC2E;"></span>
+          <span class="flow-dot" style="background:#28C840;"></span>
+          <span class="flow-window-title" style="color:rgba(255,255,255,0.4);">luphra run ../detective</span>
+        </div>
+        <div class="flow-terminal-body">
+          <p><span style="color:#7dd3fc;">luphra@demo</span> % luphra run ../detective</p>
+          <p class="flow-pill-line"><span class="flow-term-pill">luphra — Insurance for your agents</span></p>
+          <p style="margin-top:10px;"><span style="color:#fbbf24;">◇</span> <strong style="color:#f4f4f4;">Scanning</strong> <span style="color:rgba(255,255,255,0.45);">/luphra/demo/detective</span></p>
+          <p><span style="color:#7dd3fc;">●</span> <strong style="color:#f4f4f4;">Found 13 files</strong></p>
+          <p style="margin-top:10px;color:rgba(255,255,255,0.7);">→ Prompt injection <span style="color:#fbbf24;">MEDIUM</span></p>
+          <p style="color:rgba(255,255,255,0.7);">→ Data exposure <span style="color:#f87171;">HIGH</span></p>
+          <p style="color:rgba(255,255,255,0.7);">→ Auth &amp; permissions <span style="color:#34d399;">LOW</span></p>
+          <p style="margin-top:10px;color:#a78bfa;">✓ Scan complete · 4 findings</p>
+        </div>
+      </div>
+    </figure>
+
+    <div class="flow-arrow flow-arrow-1" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+    </div>
+
+    <!-- STEP 2 — Monitoring wrap -->
+    <figure class="flow-col">
+      <h3 class="flow-big flow-big--2">Monitor</h3>
+      <div class="flow-window flow-editor flow-win-2">
+        <div class="flow-window-bar">
+          <span class="flow-dot" style="background:#FF5F57;"></span>
+          <span class="flow-dot" style="background:#FEBC2E;"></span>
+          <span class="flow-dot" style="background:#28C840;"></span>
+          <span class="flow-window-title" style="color:rgba(0,0,0,0.4);">agent.ts</span>
+        </div>
+        <div class="flow-code">
+          <div class="flow-line"><span class="ln">1</span><span class="kw">import</span> { Agent } <span class="kw">from</span> <span class="str">"@openai/agents"</span>;</div>
+          <div class="flow-line"><span class="ln">2</span><span class="kw">import</span> { <span class="fn">withLuphra</span>, <span class="fn">monitorAgent</span> } <span class="kw">from</span> <span class="str">"luphra"</span>;</div>
+          <div class="flow-line"><span class="ln">3</span></div>
+          <div class="flow-line"><span class="ln">4</span><span class="blu">const</span> baseAgent = <span class="blu">new</span> <span class="fn">Agent</span>({</div>
+          <div class="flow-line"><span class="ln">5</span>&nbsp;&nbsp;<span class="prop">name</span>: <span class="str">"SupportAgent"</span>,</div>
+          <div class="flow-line"><span class="ln">6</span>&nbsp;&nbsp;<span class="prop">model</span>: <span class="str">"gpt-4o"</span></div>
+          <div class="flow-line"><span class="ln">7</span>});</div>
+          <div class="flow-line"><span class="ln">8</span></div>
+          <div class="flow-block">
+            <span class="flow-tag">Luphra wrap</span>
+            <div class="flow-line"><span class="ln">9</span><span class="blu">const</span> agent = <span class="fn">withLuphra</span>(baseAgent, {</div>
+            <div class="flow-line"><span class="ln">10</span>&nbsp;&nbsp;<span class="prop">service</span>: <span class="str">"support-agent"</span></div>
+            <div class="flow-line"><span class="ln">11</span>});</div>
+          </div>
+          <div class="flow-line"><span class="ln">12</span></div>
+          <div class="flow-block">
+            <span class="flow-tag">Monitoring</span>
+            <div class="flow-line"><span class="ln">13</span><span class="fn">monitorAgent</span>(agent, {</div>
+            <div class="flow-line"><span class="ln">14</span>&nbsp;&nbsp;<span class="prop">traces</span>: <span class="blu">true</span>,</div>
+            <div class="flow-line"><span class="ln">15</span>&nbsp;&nbsp;<span class="prop">metrics</span>: <span class="blu">true</span></div>
+            <div class="flow-line"><span class="ln">16</span>});</div>
+          </div>
+        </div>
+      </div>
+    </figure>
+
+    <div class="flow-arrow flow-arrow-2" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+    </div>
+
+    <!-- STEP 3 — Dashboard: premium + maximum coverage -->
+    <figure class="flow-col">
+      <h3 class="flow-big flow-big--3">Cover</h3>
+      <div class="flow-window flow-dash flow-win-3">
+        <div class="flow-window-bar" style="background:#262626;border-bottom:1px solid rgba(255,255,255,0.1);">
+          <span class="flow-dot" style="background:#FF5F57;"></span>
+          <span class="flow-dot" style="background:#FEBC2E;"></span>
+          <span class="flow-dot" style="background:#28C840;"></span>
+          <span class="flow-window-title" style="color:rgba(255,255,255,0.35);">app.luphra.com/report</span>
+        </div>
+        <div class="flow-dash-body">
+          <div class="flow-dash-status">
+            <span style="display:flex;align-items:center;gap:7px;"><span class="flow-dot" style="width:8px;height:8px;background:#34d399;"></span>Monitoring · live</span>
+            <span class="flow-tier-pill">Maximum</span>
+          </div>
+
+          <div class="flow-dash-main">
+            <div class="flow-gauge">
+              <svg width="92" height="92" viewBox="0 0 110 110" style="transform:rotate(-90deg);">
+                <circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="9"/>
+                <circle class="flow-gauge-arc" cx="55" cy="55" r="46" fill="none" stroke="#34d399" stroke-width="9" stroke-linecap="round" stroke-dasharray="289.03" stroke-dashoffset="63.6"/>
+              </svg>
+              <div class="flow-gauge-num">12</div>
+            </div>
+            <div class="flow-gauge-meta">
+              <div style="color:#34d399;font-weight:600;font-size:14px;">Covered</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:12px;">Low risk · bound</div>
+            </div>
+          </div>
+
+          <div class="flow-premium">
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:8px;">Estimated premium</div>
+            <div style="display:flex;align-items:baseline;gap:6px;">
+              <span style="font-size:30px;font-weight:800;color:#f4f4f4;">$359</span>
+              <span style="font-size:13px;color:rgba(255,255,255,0.3);">/ mo</span>
+            </div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.3);margin:4px 0 12px;">or $3,877 / year</div>
+            <div class="flow-premium-row"><span>Coverage tier</span><span class="flow-tier-pill">Maximum</span></div>
+            <div class="flow-premium-row"><span>Limit</span><span style="color:#f4f4f4;font-weight:600;">$5M</span></div>
+          </div>
+        </div>
+      </div>
+    </figure>
+
+  </div>
+
+  <footer class="footer"><span>08 / 14</span></footer>
+</article>

@@ -6,11 +6,13 @@ const slideFiles = [
   "src/slides/04-gap.html",
   "src/slides/10-problem.html",
   "src/slides/12-europe.html",
-  "src/slides/05-scan.html",
-  "src/slides/06-sources.html",
+  "src/slides/13-flow.html",
   "src/slides/07-certify.html",
   "src/slides/08-team.html",
   "src/slides/11-cta.html",
+  "src/slides/14-loi.html",
+  "src/slides/15-competition.html",
+  "src/slides/17-roadmap.html",
 ];
 
 const stage = document.querySelector("#stage");
@@ -25,9 +27,8 @@ stage.insertAdjacentHTML("afterbegin", slideMarkup.join("\n\n"));
 // Scale stage proportionally to fit viewport
 const stageWrapper = document.querySelector("#stageWrapper");
 function scaleStage() {
-  const pad = 48;
-  const maxW = window.innerWidth - pad * 2;
-  const maxH = window.innerHeight - pad * 2;
+  const maxW = window.innerWidth;
+  const maxH = window.innerHeight;
   const scale = Math.min(maxW / 1440, maxH / 810);
   stage.style.transform = `scale(${scale})`;
   stageWrapper.style.width = `${1440 * scale}px`;
@@ -37,34 +38,21 @@ scaleStage();
 window.addEventListener("resize", scaleStage);
 
 const slides = Array.from(document.querySelectorAll(".slide"));
-const progress = document.querySelector("#progress");
+const deck = document.querySelector(".deck");
 let current = 0;
-
-slides.forEach((slide, index) => {
-  const dot = document.createElement("button");
-  dot.className = "progress-dot";
-  dot.type = "button";
-  dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
-  dot.addEventListener("click", () => show(index));
-  progress.appendChild(dot);
-});
 
 function show(index) {
   current = Math.max(0, Math.min(index, slides.length - 1));
   slides.forEach((slide, slideIndex) => {
     slide.classList.toggle("active", slideIndex === current);
   });
-  Array.from(progress.children).forEach((dot, dotIndex) => {
-    dot.classList.toggle("active", dotIndex === current);
-  });
+  const active = slides[current];
+  deck.classList.toggle("deck-dark", active.classList.contains("inverted"));
 }
 
 function move(step) {
   show(current + step);
 }
-
-document.querySelector("#prev").addEventListener("click", () => move(-1));
-document.querySelector("#next").addEventListener("click", () => move(1));
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight" || event.key === " " || event.key === "PageDown") {

@@ -8,13 +8,15 @@ const requiredFiles = [
   "src/slides/03-authorized.html",
   "src/slides/03-confidential.html",
   "src/slides/04-gap.html",
-  "src/slides/05-scan.html",
-  "src/slides/06-sources.html",
   "src/slides/07-certify.html",
   "src/slides/08-team.html",
+  "src/slides/14-loi.html",
   "src/slides/10-problem.html",
   "src/slides/12-europe.html",
+  "src/slides/13-flow.html",
   "src/slides/11-cta.html",
+  "src/slides/15-competition.html",
+  "src/slides/17-roadmap.html",
 ];
 
 const missing = requiredFiles.filter((path) => !existsSync(path));
