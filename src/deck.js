@@ -11,11 +11,11 @@ const slideFiles = [
   "src/slides/08-team.html",
   "src/slides/11-cta.html",
   "src/slides/14-loi.html",
-  "src/slides/15-competition.html",
   "src/slides/17-roadmap.html",
+  "src/slides/18-regulatory.html",
 ];
 
-const slideVersion = "20260603-gap-copy";
+const slideVersion = "20260603-regulatory-2";
 const stage = document.querySelector("#stage");
 const slideMarkup = await Promise.all(slideFiles.map(async (file) => {
   const response = await fetch(`${file}?v=${slideVersion}`);
@@ -50,6 +50,7 @@ function show(index) {
   });
   const active = slides[current];
   deck.classList.toggle("deck-dark", active.classList.contains("inverted"));
+  deck.classList.toggle("deck-team", active.classList.contains("slide-team"));
 }
 
 function move(step) {

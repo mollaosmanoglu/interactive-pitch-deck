@@ -101,6 +101,16 @@ button {
   background: var(--charcoal);
 }
 
+/* Team slide: extend the right advisory strip to the full screen edges
+   (the strip column is 280 of 1440 → left edge at 80.556%). */
+.deck.deck-team {
+  background: linear-gradient(
+    to right,
+    var(--background) 0 80.556%,
+    var(--charcoal) 80.556% 100%
+  );
+}
+
 .fullscreen-button {
   position: fixed;
   right: 18px;
@@ -2050,6 +2060,166 @@ h2 {
   display: block;
 }
 
+/* ── Regulatory advantages slide ── */
+.slide-reg {
+  grid-template-rows: auto 1fr auto;
+  padding: 42px 68px 30px;
+  gap: 18px;
+}
+.reg-body {
+  display: grid;
+  grid-template-columns: 0.82fr 1.52fr;
+  align-items: stretch;
+  gap: 28px;
+  min-height: 0;
+}
+.reg-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 42px 38px;
+  background: var(--charcoal);
+  border-radius: 22px;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+.reg-head::after {
+  content: "";
+  position: absolute;
+  right: -72px;
+  bottom: -72px;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: rgba(167, 139, 250, 0.18);
+}
+.reg-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--solar);
+}
+.reg-headline {
+  margin: 0;
+  font-family: 'Tiempos Headline', Georgia, serif;
+  font-size: 66px;
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -2.6px;
+  color: #fff;
+}
+.reg-sub {
+  margin: 0;
+  max-width: 360px;
+  font-size: 17px;
+  line-height: 1.48;
+  color: rgba(255, 255, 255, 0.7);
+}
+.reg-points {
+  display: grid;
+  gap: 11px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.reg-points li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.78);
+}
+.reg-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--solar);
+}
+.reg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  align-content: center;
+}
+.reg-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(23, 23, 23, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.reg-card--accent {
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+}
+.reg-card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 0;
+}
+.reg-index {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(167, 139, 250, 0.16);
+  color: var(--solar);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  grid-row: 1 / span 2;
+  margin-top: 2px;
+}
+.reg-card--accent .reg-index {
+  background: var(--solar);
+  color: var(--foreground);
+}
+.reg-name {
+  font-family: 'Tiempos Headline', Georgia, serif;
+  font-size: 21px;
+  line-height: 1.12;
+  letter-spacing: -0.4px;
+  color: var(--foreground);
+}
+.reg-card--accent .reg-name {
+  color: #fff;
+}
+.reg-date {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--solar);
+}
+.reg-why {
+  margin: 0;
+  grid-column: 2;
+  font-size: 13.2px;
+  line-height: 1.4;
+  color: var(--mid-gray);
+}
+.reg-card--accent .reg-why {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* ── Roadmap slide ── */
 .slide-roadmap {
   grid-template-rows: auto 1fr auto;
@@ -2449,26 +2619,60 @@ h2 {
 }
 .p10-layout--duo .p10-top {
   grid-template-columns: 1.3fr 1fr;
-  align-items: center;
+  align-items: stretch;
   gap: 80px;
 }
 .p10-layout--duo .p10-hero-card {
-  min-height: 320px;
-  padding: 40px 48px 44px;
+  min-height: 380px;
+  padding: 44px 48px;
+  display: grid;
+  grid-template-rows: 84px 168px auto;
+  align-content: center;
+  gap: 18px;
+}
+.p10-layout--duo .p10-card-label {
+  font-size: 24px;
+  line-height: 1.35;
+  align-self: end;
+  margin-bottom: 0;
 }
 .p10-layout--duo .p10-card-number {
-  font-size: 96px;
+  font-size: 148px;
+  align-self: center;
+}
+.p10-layout--duo .p10-card-sub {
+  font-size: 24px;
+  line-height: 1.35;
+  align-self: start;
+  margin-top: 0;
 }
 .p10-layout--duo .p10-right {
-  align-items: flex-start;
-  gap: 12px;
+  align-items: stretch;
+  height: 100%;
+}
+.p10-layout--duo .p10-right .stat-item {
+  display: grid;
+  grid-template-rows: 84px 168px auto;
+  align-content: center;
+  gap: 18px;
+  min-height: 380px;
+  height: 100%;
+  padding: 44px 0;
 }
 .p10-layout--duo .p10-right .stat-label {
-  font-size: var(--text-body-m);
+  font-size: 24px;
+  line-height: 1.35;
+  align-self: end;
 }
 .p10-layout--duo .p10-right .stat-number {
-  font-size: 112px;
+  font-size: 148px;
   line-height: 1;
+  align-self: center;
+}
+.p10-layout--duo .p10-right .stat-sub {
+  font-size: 24px;
+  line-height: 1.35;
+  align-self: start;
 }
 
 /* ── Europe market slide ── */

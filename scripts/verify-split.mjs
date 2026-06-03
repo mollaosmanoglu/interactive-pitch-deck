@@ -15,8 +15,8 @@ const requiredFiles = [
   "src/slides/12-europe.html",
   "src/slides/13-flow.html",
   "src/slides/11-cta.html",
-  "src/slides/15-competition.html",
   "src/slides/17-roadmap.html",
+  "src/slides/18-regulatory.html",
 ];
 
 const missing = requiredFiles.filter((path) => !existsSync(path));
