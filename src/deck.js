@@ -39,6 +39,7 @@ window.addEventListener("resize", scaleStage);
 
 const slides = Array.from(document.querySelectorAll(".slide"));
 const deck = document.querySelector(".deck");
+const fullscreenButton = document.querySelector("#fullscreenButton");
 let current = 0;
 
 function show(index) {
@@ -68,4 +69,41 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+function isFullscreen() {
+  return Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+}
+
+function updateFullscreenButton() {
+  const fullscreen = isFullscreen();
+  fullscreenButton.textContent = fullscreen ? "Exit" : "Fullscreen";
+  fullscreenButton.setAttribute("aria-label", fullscreen ? "Exit fullscreen" : "Enter fullscreen");
+}
+
+fullscreenButton.addEventListener("click", async () => {
+  const fullscreenTarget = document.documentElement;
+  try {
+    if (isFullscreen()) {
+      if (document.exitFullscreen) {
+        await document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    } else if (fullscreenTarget.requestFullscreen) {
+      await fullscreenTarget.requestFullscreen();
+    } else if (fullscreenTarget.webkitRequestFullscreen) {
+      fullscreenTarget.webkitRequestFullscreen();
+    } else {
+      fullscreenButton.textContent = "Not supported";
+    }
+  } catch (error) {
+    console.error("Fullscreen request failed", error);
+  } finally {
+    updateFullscreenButton();
+  }
+});
+
+document.addEventListener("fullscreenchange", updateFullscreenButton);
+document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+
+updateFullscreenButton();
 show(0);

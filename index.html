@@ -10,16 +10,19 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="src/styles/base.css" />
+    <link rel="stylesheet" href="src/styles/base.css?v=fullscreen-2" />
   </head>
   <body>
     <main class="deck" aria-label="Luphra interactive pitch deck">
+      <button class="fullscreen-button" id="fullscreenButton" type="button" aria-label="Enter fullscreen">
+        Fullscreen
+      </button>
       <div class="stage-wrapper" id="stageWrapper">
       <section class="stage" id="stage">
       </section>
       </div>
     </main>
 
-    <script type="module" src="src/deck.js"></script>
+    <script type="module" src="src/deck.js?v=fullscreen-2"></script>
   </body>
 </html>
