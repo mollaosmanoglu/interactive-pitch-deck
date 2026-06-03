@@ -15,9 +15,10 @@ const slideFiles = [
   "src/slides/17-roadmap.html",
 ];
 
+const slideVersion = "20260603-gap-copy";
 const stage = document.querySelector("#stage");
 const slideMarkup = await Promise.all(slideFiles.map(async (file) => {
-  const response = await fetch(file);
+  const response = await fetch(`${file}?v=${slideVersion}`);
   if (!response.ok) {
     throw new Error(`Failed to load ${file}: ${response.status}`);
   }
