@@ -102,12 +102,12 @@ button {
 }
 
 /* Team slide: extend the right advisory strip to the full screen edges
-   (the strip column is 280 of 1440 → left edge at 80.556%). */
+   (the strip column is 560 of 1440 → left edge at 61.111%). */
 .deck.deck-team {
   background: linear-gradient(
     to right,
-    var(--background) 0 80.556%,
-    var(--charcoal) 80.556% 100%
+    var(--background) 0 61.111%,
+    #868686 61.111% 100%
   );
 }
 
@@ -1901,7 +1901,7 @@ h2 {
 }
 .team-layout {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr 560px;
   height: 100%;
 }
 .team-main {
@@ -2002,7 +2002,7 @@ h2 {
 
 /* Right strip */
 .team-strip {
-  background: var(--charcoal);
+  background: #868686;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2012,21 +2012,19 @@ h2 {
 }
 .team-strip-title {
   font-family: 'Tiempos Headline', Georgia, serif;
-  color: #fff;
+  color: var(--foreground);
   text-align: center;
   margin: 0;
-  padding: 28px 16px 16px;
+  padding: 20px 16px 8px;
   flex: 0 0 auto;
 }
 .team-advisory-board {
   width: 100%;
   flex: 1 1 auto;
   min-height: 0;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
   display: block;
-  transform: scale(0.95);
-  transform-origin: center center;
 }
 
 /* ── Letters of intent slide ── */
