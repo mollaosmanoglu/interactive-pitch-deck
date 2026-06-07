@@ -1366,6 +1366,20 @@ h2 {
   place-items: center;
 }
 
+.icon-button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-button svg[hidden] {
+  display: none;
+}
+
 .icon-button:hover,
 .progress-dot:hover {
   background: var(--base-300);

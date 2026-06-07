@@ -1,15 +1,10 @@
 const slideFiles = [
-  "src/slides/01-hero.html",
   "src/slides/02-product-overview.html",
   "src/slides/03-scale.html",
   "src/slides/04-gap.html",
   "src/slides/05-scan.html",
   "src/slides/06-sources.html",
   "src/slides/07-certify.html",
-  "src/slides/08-team.html",
-  "src/slides/09-viability.html",
-  "src/slides/10-problem.html",
-  "src/slides/11-cta.html",
 ];
 
 const stage = document.querySelector("#stage");
@@ -65,6 +60,34 @@ function move(step) {
 document.querySelector("#prev").addEventListener("click", () => move(-1));
 document.querySelector("#next").addEventListener("click", () => move(1));
 
+const fullscreenButton = document.querySelector("#fullscreen");
+const enterFullscreenIcon = document.querySelector("#enterFullscreenIcon");
+const exitFullscreenIcon = document.querySelector("#exitFullscreenIcon");
+
+function updateFullscreenButton() {
+  const isFullscreen = Boolean(document.fullscreenElement);
+  fullscreenButton.setAttribute(
+    "aria-label",
+    isFullscreen ? "Exit fullscreen" : "Enter fullscreen",
+  );
+  fullscreenButton.title = isFullscreen ? "Exit fullscreen" : "Enter fullscreen";
+  enterFullscreenIcon.hidden = isFullscreen;
+  exitFullscreenIcon.hidden = !isFullscreen;
+}
+
+fullscreenButton.addEventListener("click", async () => {
+  if (document.fullscreenElement) {
+    await document.exitFullscreen();
+  } else {
+    await document.documentElement.requestFullscreen();
+  }
+});
+
+document.addEventListener("fullscreenchange", () => {
+  updateFullscreenButton();
+  scaleStage();
+});
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight" || event.key === " " || event.key === "PageDown") {
     event.preventDefault();
@@ -79,4 +102,5 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+updateFullscreenButton();
 show(0);
