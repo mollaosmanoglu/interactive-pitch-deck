@@ -12,11 +12,9 @@ const requiredFiles = [
   "src/slides/08-team.html",
   "src/slides/14-loi.html",
   "src/slides/10-problem.html",
-  "src/slides/12-europe.html",
   "src/slides/13-flow.html",
   "src/slides/11-cta.html",
   "src/slides/17-roadmap.html",
-  "src/slides/18-regulatory.html",
 ];
 
 const missing = requiredFiles.filter((path) => !existsSync(path));

@@ -1,11 +1,15 @@
+import glob
 import os
-import time
+import sys
+
+import img2pdf
 from playwright.sync_api import sync_playwright
 
 URL = "http://127.0.0.1:8899/index.html"
 OUT_DIR = "/tmp/deck_pdf_frames"
 W, H = 1440, 810
-SETTLE_MS = 3200  # let staggered/forwards animations reach their final state
+SETTLE_MS = 5500  # exceed the longest timeline (flow slide finishes ~4.35s)
+PDF_NAME = sys.argv[1] if len(sys.argv) > 1 else "Luphra-pitch-deck-draft.pdf"
 
 os.makedirs(OUT_DIR, exist_ok=True)
 for f in os.listdir(OUT_DIR):
@@ -49,3 +53,8 @@ with sync_playwright() as p:
     browser.close()
 
 print("DONE", len(frames))
+
+layout = img2pdf.get_layout_fun((img2pdf.in_to_pt(10), img2pdf.in_to_pt(5.625)))
+with open(PDF_NAME, "wb") as f:
+    f.write(img2pdf.convert(frames, layout_fun=layout))
+print("saved:", os.path.abspath(PDF_NAME), round(os.path.getsize(PDF_NAME) / 1024 / 1024, 2), "MB")

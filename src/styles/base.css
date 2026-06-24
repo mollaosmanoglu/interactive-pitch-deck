@@ -1573,6 +1573,11 @@ h2 {
   top: 19%;
   width: 29%;
 }
+.article-underline--tesla {
+  left: 43.5%;
+  top: 75.2%;
+  width: 21%;
+}
 .product-overview-inner {
   display: flex;
   flex-direction: column;
@@ -2668,6 +2673,40 @@ h2 {
   align-self: center;
 }
 .p10-layout--duo .p10-right .stat-sub {
+  font-size: 24px;
+  line-height: 1.35;
+  align-self: start;
+}
+
+/* Single-stat variant (centered hero card) */
+.p10-layout--solo {
+  justify-content: center;
+  height: 100%;
+}
+.p10-layout--solo .p10-top {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+}
+.p10-layout--solo .p10-hero-card {
+  min-height: 380px;
+  padding: 44px 48px;
+  display: grid;
+  grid-template-rows: 84px 168px auto;
+  align-content: center;
+  gap: 18px;
+}
+.p10-layout--solo .p10-card-label {
+  font-size: 24px;
+  line-height: 1.35;
+  align-self: end;
+}
+.p10-layout--solo .p10-card-number {
+  font-size: 148px;
+  align-self: center;
+}
+.p10-layout--solo .p10-card-sub {
   font-size: 24px;
   line-height: 1.35;
   align-self: start;
